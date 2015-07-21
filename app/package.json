@@ -5,5 +5,11 @@
     },
     "name" : "wurst",
     "private" : true,
-    "version" : "0.0.1"
+    "version" : "0.0.1",
+    "devDependencies": {
+        "eslint": "^0.24.1"
+    },
+    "scripts": {
+        "lint": "./node_modules/.bin/eslint *.js"
+    }
 }
