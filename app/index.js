@@ -5,9 +5,8 @@ var app = express();
 
 var PORT = 80;
 
-app.get('/', function (req, res) {
-    res.send('Hello world\n');
-});
+app.use(express.static('public'));
+app.use("/node_modules", express.static("node_modules"));
 
 app.get('/list.json', function (req, res) {
     var answer;

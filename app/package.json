@@ -1,7 +1,8 @@
 {
     "author" : "Ivan Bessarabov <ivan@bessarabov.ru>",
     "dependencies" : {
-        "express" : "3.2.4"
+        "express" : "3.2.4",
+        "react" : "0.13.3"
     },
     "name" : "wurst",
     "private" : true,
