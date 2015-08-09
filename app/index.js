@@ -23,8 +23,16 @@ app.get('/list.json', function (req, res) {
             answer = JSON.parse(body);
         }
 
+        var result = [];
+        for (var i = 0; i < answer.result.objects.length; i++) {
+            result.push([
+                answer.result.objects[i].path,
+                answer.result.objects[i].status
+            ]);
+        }
+
         res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify(answer.result.objects));
+        res.send(JSON.stringify(result));
     })
 });
 
