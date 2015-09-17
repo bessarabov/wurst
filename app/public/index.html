@@ -31,8 +31,12 @@ var WurstTable = React.createClass({
     render: function() {
         var rows = [];
         this.state.data.forEach(function(data) {
+            var classString = "";
+            if (data.status === 'fail' || data.status === 'unknown') {
+                classString = 'wurst_table_fail';
+            }
             rows.push(
-                <tr>
+                <tr className={classString}>
                 <td className="wurst_table_td">{data.path}</td>
                 <td className="wurst_table_td">{data.status}</td>
                 </tr>

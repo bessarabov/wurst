@@ -6,3 +6,7 @@
     border: 1px solid silver;
     padding: 8px;
 }
+
+.wurst_table_fail {
+    color: red;
+}
