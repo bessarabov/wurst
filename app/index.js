@@ -25,10 +25,10 @@ app.get('/list.json', function (req, res) {
 
         var result = [];
         for (var i = 0; i < answer.result.objects.length; i++) {
-            result.push([
-                answer.result.objects[i].path,
-                answer.result.objects[i].status
-            ]);
+            result.push({
+                path : answer.result.objects[i].path,
+                status : answer.result.objects[i].status
+            });
         }
 
         res.setHeader('Content-Type', 'application/json');

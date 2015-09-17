@@ -5,57 +5,51 @@
     <title>wurst</title>
     <script src="node_modules/react/dist/react.js"></script>
     <script src="node_modules/react/dist/JSXTransformer.js"></script>
-    <script src="node_modules/fixed-data-table/dist/fixed-data-table.js"></script>
-    <link rel="stylesheet" media="all" href="node_modules/fixed-data-table/dist/fixed-data-table.css">
+    <link rel="stylesheet" media="all" href="/css/style.css">
   </head>
   <body>
-    <div id="example"></div>
+    <div id="content"></div>
     <script type="text/jsx">
 
-var Table = FixedDataTable.Table;
-var Column = FixedDataTable.Column;
+var WurstTable = React.createClass({
+    getInitialState: function() {
+        return {data: []};
+    },
+    componentDidMount: function() {
 
-// Table data as a list of array.
-var rows = [];
+        var that = this;
 
-function rowGetter(rowIndex) {
-  return rows[rowIndex];
-}
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'list.json', true);
+        xhr.onload = function() {
+            rows = JSON.parse(xhr.responseText);
+            that.setState({data: rows});
+        };
+        xhr.send(null);
 
-function doTheRender() {
-    React.render(
-      <Table
-        rowHeight={50}
-        rowGetter={rowGetter}
-        rowsCount={rows.length}
-        width={600}
-        height={500}
-        headerHeight={50}>
-        <Column
-          label="path"
-          width={300}
-          dataKey={0}
-        />
-        <Column
-          label="status"
-          width={300}
-          dataKey={1}
-        />
-      </Table>,
-      document.getElementById('example')
-    );
-}
+    },
+    render: function() {
+        var rows = [];
+        this.state.data.forEach(function(data) {
+            rows.push(
+                <tr>
+                <td className="wurst_table_td">{data.path}</td>
+                <td className="wurst_table_td">{data.status}</td>
+                </tr>
+            );
+        });
+        return (
+            <table className="wurst_table">
+            {rows}
+            </table>
+        );
+    }
+});
 
-doTheRender();
-
-var xhr = new XMLHttpRequest();
-xhr.open('get', 'list.json', true);
-xhr.onload = function() {
-    rows = JSON.parse(xhr.responseText);
-
-    doTheRender();
-};
-xhr.send(null);
+React.render(
+    <WurstTable/>,
+    document.getElementById('content')
+);
 
     </script>
   </body>

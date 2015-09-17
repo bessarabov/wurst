@@ -1,0 +1,8 @@
+.wurst_table {
+    border-collapse: collapse;
+}
+
+.wurst_table_td {
+    border: 1px solid silver;
+    padding: 8px;
+}
