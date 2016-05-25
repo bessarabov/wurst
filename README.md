@@ -16,3 +16,9 @@ Now you can explore https://github.com/bessarabov/curry which is ready.
         -e 'TOKEN=3qagL6jllc' \
         --name wurst \
         wurst
+
+## lint:
+
+    cd app
+    npm install
+    npm run lint
